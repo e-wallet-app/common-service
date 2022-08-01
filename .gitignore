@@ -3,6 +3,7 @@ target/
 */.mvn/**
 !**/src/main/**/target/
 !**/src/test/**/target/
+**/.gitignore
 
 ### STS ###
 .apt_generated
