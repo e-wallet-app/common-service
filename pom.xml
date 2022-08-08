@@ -57,6 +57,7 @@
 
     <modules>
         <module>admin</module>
-        <module>user_and_agent</module>
+        <module>user</module>
+        <module>agent</module>
     </modules>
 </project>

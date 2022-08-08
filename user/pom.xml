@@ -10,10 +10,10 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>user_and_agent</artifactId>
+    <artifactId>user</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>user_and_agent</name>
-    <description>user_and_agent</description>
+    <name>user</name>
+    <description>user module</description>
 
     <build>
         <plugins>
