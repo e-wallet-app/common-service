@@ -1,16 +1,12 @@
 package com.ewallet.agent.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "nid_card_info")
 public class NidCardInfo implements Serializable {
@@ -18,7 +14,7 @@ public class NidCardInfo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "full_name_bn")
     private String fullNameBn;
@@ -41,8 +37,15 @@ public class NidCardInfo implements Serializable {
     @Column(name = "blood_group")
     private String bloodGroup;
 
-    @Column(name = "address")
+    @Column(name = "address", columnDefinition = "TEXT")
     private String address;
+
+    @OneToOne(mappedBy = "nidCardInfo")
+    private Agent agent;
+
+    @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "photo_id", referencedColumnName = "id")
+    private Attachment attachment;
 
 
 }

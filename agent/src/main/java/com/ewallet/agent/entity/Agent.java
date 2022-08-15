@@ -1,28 +1,23 @@
 package com.ewallet.agent.entity;
-
 import com.ewallet.agent.enums.Gender;
+import com.ewallet.agent.enums.Role;
 import com.ewallet.agent.enums.Status;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.management.relation.Role;
+import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
-@Getter
-@Setter
-@NoArgsConstructor
+@Data
 @Entity
-@Table(name = "agent_table")
+@Table(name = "agents")
 public class Agent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "user_name")
     private String userName;
@@ -34,13 +29,13 @@ public class Agent implements Serializable {
     private String fullName;
 
     @Column(name = "birth_date")
-    private LocalDateTime birthDate;
+    private LocalDateTime birthDate; //Date
 
     @Column(name = "address")
     private String address;
 
     @Column(name = "phone_number")
-    private Long phoneNumber;
+    private String phoneNumber; //String
 
     @Column(name = "email")
     private String email;
@@ -56,28 +51,45 @@ public class Agent implements Serializable {
     @Column(name = "role")
     private Role role;
 
-    @Column(name = "nid_number")
-    private Long nidNumber;
+//    @Column(name = "agent_nid_number")
+//    private Long nidNumber; //String
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "account_status")
+    @Column(name = "status")
     private Status status;
 
-
-//    @Column(name = "profile_photo")
-//    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
-//    private Attachment profilePhoto;
-
-
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "created_by")
     private Long createdBy;
 
     @Column(name = "approved_at")
-    private Date ApprovedAt;
+    private LocalDateTime ApprovedAt; // LocalDateTime
 
-    @Column(name = "approved_by")
-    private Long approvedBy;
+    @OneToOne
+    @JoinColumn(name = "approved_by", referencedColumnName = "id")
+    private Admin approvedBy; //complete it later
+
+
+    @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true)
+    @JoinColumn(name = "agent_wallet_id", referencedColumnName = "id")
+    private AgentWallet agentWallet;
+
+    @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true)
+    @JoinColumn(name = "attachment_id", referencedColumnName = "id")
+    private Attachment attachment;
+
+    @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true,cascade = CascadeType.ALL)
+    @JoinColumn(name = "nid_info", referencedColumnName = "id")
+    private NidCardInfo nidCardInfo;// NIDNumber
+
+    @OneToMany(mappedBy = "agent")
+    private List<BankAccountDetails> bankAccountDetails;
+
+    @OneToMany(mappedBy = "agent")
+    private List<CardDetails> cardDetails;
+
+    @OneToMany(mappedBy = "agent")
+    private List<TransactionHistory> transactionHistory;
 }

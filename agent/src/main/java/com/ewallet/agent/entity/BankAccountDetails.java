@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -31,7 +32,11 @@ public class BankAccountDetails implements Serializable {
     private String accountNumber;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "account_status")
+    @Column(name = "status")
     private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "agent_id", referencedColumnName = "id")
+    private Agent agent;
 
 }

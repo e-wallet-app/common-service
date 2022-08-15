@@ -28,4 +28,10 @@ public class Attachment implements Serializable {
 
     @Column(name = "attachment_path")
     private String attachmentPath;
+
+    @OneToOne(mappedBy = "attachment")
+    private Agent agent;
+
+    @OneToOne(mappedBy = "attachment")
+    private NidCardInfo nidCardInfo;
 }

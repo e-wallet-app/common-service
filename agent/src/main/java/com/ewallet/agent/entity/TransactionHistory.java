@@ -29,7 +29,7 @@ public class TransactionHistory implements Serializable {
     private UUID receiverId;
 
     @Column(name = "amount")
-    private double amount;
+    private Double amount;
 
     @Column(name = "transaction_type")
     private String transactionTpe;
@@ -43,6 +43,10 @@ public class TransactionHistory implements Serializable {
 
     @Column(name = "created_at")
     private Date createdAt;
+
+    @ManyToOne
+    @JoinColumn(name = "agent_id", referencedColumnName = "id")
+    private Agent agent;
 
 
 }

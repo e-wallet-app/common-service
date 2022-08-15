@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -13,17 +14,21 @@ import java.io.Serializable;
 @Entity
 @Table(name = "agent_wallet")
 public class AgentWallet implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "wallet_number")
     private String walletNumber;
 
     @Column(name = "current_balance")
-    private double currentBalance;
+    private Double currentBalance;
 
     @Column(name = "deposit_balance")
-    private double  depositBalance;
+    private Double  depositBalance;
+
+    @OneToOne(mappedBy = "agentWallet")
+    private Agent agent;
 }
