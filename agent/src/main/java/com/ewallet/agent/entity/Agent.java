@@ -1,14 +1,16 @@
 package com.ewallet.agent.entity;
 
+import com.ewallet.agent.enums.Gender;
+import com.ewallet.agent.enums.Status;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.management.relation.Role;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -62,9 +64,9 @@ public class Agent implements Serializable {
     private Status status;
 
 
-    @Column(name = "profile_photo")
-    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
-    private Attachment profilePhoto;
+//    @Column(name = "profile_photo")
+//    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
+//    private Attachment profilePhoto;
 
 
     @Column(name = "created_at")
