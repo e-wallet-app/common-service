@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "transaction_history")
+@Table(name = "transaction_historyes")
 public class TransactionHistory implements Serializable {
 
     @Id

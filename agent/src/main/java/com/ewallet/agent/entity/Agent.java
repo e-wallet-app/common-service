@@ -7,17 +7,16 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "agents")
+@Table(name = "agent")
 public class Agent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private UUID id;
+    private Long id;
 
     @Column(name = "user_name")
     private String userName;
@@ -51,9 +50,6 @@ public class Agent implements Serializable {
     @Column(name = "role")
     private Role role;
 
-//    @Column(name = "agent_nid_number")
-//    private Long nidNumber; //String
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private Status status;
@@ -77,7 +73,7 @@ public class Agent implements Serializable {
     private AgentWallet agentWallet;
 
     @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true)
-    @JoinColumn(name = "attachment_id", referencedColumnName = "id")
+    @JoinColumn(name = "profile_photo", referencedColumnName = "id")
     private Attachment attachment;
 
     @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true,cascade = CascadeType.ALL)
