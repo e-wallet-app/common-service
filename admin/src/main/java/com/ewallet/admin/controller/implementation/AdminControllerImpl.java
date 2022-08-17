@@ -1,9 +1,9 @@
 package com.ewallet.admin.controller.implementation;
 
-import com.ewallet.admin.controller.definition.IAdminController;
+import com.ewallet.admin.controller.definition.AdminController;
 import com.ewallet.admin.dto.request.ReqAdminDto;
 import com.ewallet.admin.dto.response.ResAdminDto;
-import com.ewallet.admin.service.definition.IAdminService;
+import com.ewallet.admin.service.definition.AdminService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class AdminController implements IAdminController {
+public class AdminControllerImpl implements AdminController {
 
-    private final IAdminService iAdminService;
+    private final AdminService adminService;
 
-    public AdminController(IAdminService IAdminService) {
-        this.iAdminService = IAdminService;
+    public AdminControllerImpl(AdminService AdminService) {
+        this.adminService = AdminService;
     }
 
     @Override
     public ResponseEntity<String> createAdmin(ReqAdminDto reqAdminDto)
     {
-        iAdminService.createAdmin(reqAdminDto);
+        adminService.createAdmin(reqAdminDto);
         return new  ResponseEntity<>("Successfully created admin", HttpStatus.CREATED);
     }
 
     @Override
     public ResponseEntity<String > updateAdmin(String id, ReqAdminDto reqAdminDto)
     {
-        iAdminService.updateAdmin(id, reqAdminDto);
+        adminService.updateAdmin(id, reqAdminDto);
 
         return ResponseEntity.ok("Admin updated");
     }
@@ -37,20 +37,20 @@ public class AdminController implements IAdminController {
 
     @Override
     public ResponseEntity<String > deleteAdmin(String id) throws Exception {
-        iAdminService.deleteAdmin(id);
+        adminService.deleteAdmin(id);
         return ResponseEntity.ok("Admin account deleted");
     }
 
     @Override
     public ResponseEntity<List<ResAdminDto>> getAdminList()
     {
-        var resAdminDtoList = iAdminService.getAllAdmin();
+        var resAdminDtoList = adminService.getAllAdmin();
         return ResponseEntity.ok(resAdminDtoList);
     }
 
     @Override
     public ResponseEntity<ResAdminDto> getAdmin(String id) throws Exception{
-        var resAdminDto = iAdminService.getAdmin(id);
+        var resAdminDto = adminService.getAdmin(id);
         return ResponseEntity.ok(resAdminDto);
     }
 }

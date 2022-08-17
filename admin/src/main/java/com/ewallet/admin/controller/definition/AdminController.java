@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @CrossOrigin("${cross.origin}")
-@RequestMapping("/e-wallet/v1/admin")
-public interface IAdminController
+@RequestMapping("/api/v1/admin")
+public interface AdminController
 {
     @PostMapping("/")
     ResponseEntity<String> createAdmin(@RequestBody ReqAdminDto reqAdminDto);
