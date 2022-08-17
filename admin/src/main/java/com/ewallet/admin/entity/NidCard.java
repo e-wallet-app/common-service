@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "nid_tbl")
+@Table(name = "nid_cards")
 public class NidCard implements Serializable
 {
 

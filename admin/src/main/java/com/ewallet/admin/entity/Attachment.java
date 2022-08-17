@@ -4,16 +4,17 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "attachment_tbl")
+@Table(name = "attachments")
 public class Attachment implements Serializable
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "attachment_name")
     private String attachmentName;

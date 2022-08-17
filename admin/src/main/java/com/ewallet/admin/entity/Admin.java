@@ -7,16 +7,18 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "admin_tbl")
+@Table(name = "admins")
 public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private UUID id;
 
     @Column(name = "full_name")
     private String fullName;
@@ -25,20 +27,21 @@ public class Admin implements Serializable {
     private String userName;
 
     @Column(name = "birth_date")
-    private Date birthDate;
+    private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
     private Role role;
 
-    @Column(name = "address")
+    @Column(name = "address", columnDefinition = "TEXT")
     private String address;
 
-    @Column(name = "nid_number")
-    private Long nidNumber;
+    @OneToOne(fetch = FetchType.LAZY,orphanRemoval = true)
+    @JoinColumn(name = "nid_number",referencedColumnName = "id")
+    private NidCard nidNumber;
 
-    @Column(name = "phn_number")
-    private Long phoneNumber;
+    @Column(name = "phone_number")
+    private String phoneNumber;
 
     @Column(name = "email")
     private String email;
@@ -47,14 +50,14 @@ public class Admin implements Serializable {
     @Column(name = "gender")
     private Gender gender;
 
-    @Column(name = "profile_photo")
+    @JoinColumn(name = "profile_image", referencedColumnName = "id")
     @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
-    private Attachment profilePhoto;
+    private Attachment profileImage;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "acc_status")
+    @Column(name = "account_status")
     private Status status;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 }
