@@ -9,13 +9,12 @@ import java.time.LocalDate;
 @Setter
 public class AgentReqDto {
 
-    private Long id;
     private String userName;
     private String displayName;
     private String fullName;
-    private LocalDate birthDate;
+    private String birthDate;
     private String address;
-    private Long phoneNumber;
+    private String phoneNumber;
     private String email;
     private String gender;
     private String pin;

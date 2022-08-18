@@ -1,10 +1,10 @@
-package com.ewallet.agent.controller;
+package com.ewallet.agent.controller.implementation;
 
 import com.ewallet.agent.dto.request.AgentReqDto;
 import com.ewallet.agent.dto.response.AgentResDto;
 import com.ewallet.agent.entity.Agent;
 import com.ewallet.agent.exceptions.AgentNotFoundException;
-import com.ewallet.agent.service.AgentService;
+import com.ewallet.agent.service.definition.AgentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,15 +22,15 @@ public class AgentController {
     }
 
     @GetMapping("/agent")
-    public ResponseEntity<List<Agent>> allAgent()
+    public ResponseEntity<List<AgentResDto>> allAgent()
     {
-        var agent =  agentService.findAll();
+        var agent =  agentService.getAllAgent();
         return ResponseEntity.ok(agent);
     }
 
     @GetMapping("/agent/{id}")
-    public ResponseEntity<Agent> getAgent(@PathVariable Long id){
-        Agent agent = agentService.findById(id);
+    public ResponseEntity<AgentResDto> getAgent(@PathVariable String id){
+        var agent = agentService.findById(id);
         if(agent == null){
             throw new AgentNotFoundException("id not found ......");
         }
@@ -40,7 +40,6 @@ public class AgentController {
     @PostMapping("/agent")
     public ResponseEntity<String> createAgent(@RequestBody  AgentReqDto agentReqDto){
         agentService.createAgent(agentReqDto);
-
         return new ResponseEntity<>("Agent Created", HttpStatus.CREATED);
     }
 
