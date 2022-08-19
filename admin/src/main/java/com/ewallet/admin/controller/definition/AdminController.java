@@ -1,28 +1,29 @@
 package com.ewallet.admin.controller.definition;
 
-import com.ewallet.admin.dto.request.ReqAdminDto;
-import com.ewallet.admin.dto.response.ResAdminDto;
+import com.ewallet.admin.dto.request.RequestAdminDto;
+import com.ewallet.admin.dto.response.ResponseAdminDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin("${cross.origin}")
+@CrossOrigin("${http://localhost:4200}")
 @RequestMapping("/api/v1/admin")
 public interface AdminController
 {
     @PostMapping("/")
-    ResponseEntity<String> createAdmin(@RequestBody ReqAdminDto reqAdminDto);
+    ResponseEntity<String> createAdmin(@RequestBody RequestAdminDto requestAdminDto) throws IOException;
 
     @PutMapping("/{id}")
-    ResponseEntity<?> updateAdmin(@PathVariable String id, @RequestBody ReqAdminDto reqAdminDto);
+    ResponseEntity<?> updateAdmin(@PathVariable("id") String id, @RequestBody RequestAdminDto requestAdminDto) throws IOException;
 
     @DeleteMapping("/{id}")
     ResponseEntity<?> deleteAdmin(@PathVariable("id") String id) throws Exception;
 
     @GetMapping("/")
-    ResponseEntity<List<ResAdminDto>> getAdminList();
+    ResponseEntity<List<ResponseAdminDto>> getAdminList();
 
     @GetMapping("/{id}")
-    ResponseEntity<ResAdminDto> getAdmin(@PathVariable String id) throws Exception;
+    ResponseEntity<ResponseAdminDto> getAdmin(@PathVariable("id") String id) throws Exception;
 }

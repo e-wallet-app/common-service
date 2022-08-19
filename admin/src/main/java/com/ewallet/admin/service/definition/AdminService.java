@@ -1,24 +1,25 @@
 package com.ewallet.admin.service.definition;
 
-import com.ewallet.admin.dto.request.ReqAdminDto;
-import com.ewallet.admin.dto.response.ResAdminDto;
+import com.ewallet.admin.dto.request.RequestAdminDto;
+import com.ewallet.admin.dto.response.ResponseAdminDto;
 import com.ewallet.admin.entity.Admin;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface AdminService
 {
-    ResAdminDto getAdmin(String id) throws Exception;
+    ResponseAdminDto getAdmin(String id) throws Exception;
 
-    List<ResAdminDto> getAllAdmin();
+    List<ResponseAdminDto> getAllAdmin();
 
-    void createAdmin(ReqAdminDto reqAdminDto);
+    void createAdmin(RequestAdminDto requestAdminDto) throws IOException;
 
-    void updateAdmin(String id, ReqAdminDto reqAdminDto);
+    void updateAdmin(String id, RequestAdminDto requestAdminDto) throws IOException;
 
     void deleteAdmin(String id) throws Exception;
 
-    Admin dtoToEntity(ReqAdminDto reqAdminDto);
+    Admin dtoToEntity(RequestAdminDto requestAdminDto) throws IOException;
 
-    ResAdminDto entityToDto(Admin admin);
+    ResponseAdminDto entityToDto(Admin admin);
 }

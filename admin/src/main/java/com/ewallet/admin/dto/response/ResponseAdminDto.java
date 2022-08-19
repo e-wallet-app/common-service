@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResAdminDto
+public class ResponseAdminDto
 {
     private String id;
     private String fullName;
@@ -17,6 +17,7 @@ public class ResAdminDto
     private String nidNumber;
     private String phoneNumber;
     private String email;
+    private String password;
     private String gender;
     private String createdAt;
     private String profileImagePath;
