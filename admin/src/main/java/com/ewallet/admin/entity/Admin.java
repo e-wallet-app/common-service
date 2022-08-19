@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "admins")
+@Table(name = "admin")
 public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,6 +45,9 @@ public class Admin implements Serializable {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender")
