@@ -1,7 +1,7 @@
 package com.ewallet.admin.service.implementation;
 
 import com.ewallet.admin.entity.NidCard;
-import com.ewallet.admin.exception.NotFoundException;
+import com.ewallet.admin.exceptions.NotFoundException;
 import com.ewallet.admin.repository.NidCardRepository;
 import com.ewallet.admin.service.definition.NidCardService;
 import org.springframework.stereotype.Service;

@@ -5,7 +5,7 @@ import com.ewallet.admin.dto.response.ResponseAdminDto;
 import com.ewallet.admin.entity.Admin;
 import com.ewallet.admin.enums.Gender;
 import com.ewallet.admin.enums.Role;
-import com.ewallet.admin.exception.NotFoundException;
+import com.ewallet.admin.exceptions.NotFoundException;
 import com.ewallet.admin.repository.AdminRepository;
 import com.ewallet.admin.service.definition.AdminService;
 import com.ewallet.admin.service.definition.AttachmentService;
