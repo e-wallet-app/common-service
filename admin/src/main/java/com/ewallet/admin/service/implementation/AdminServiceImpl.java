@@ -5,6 +5,7 @@ import com.ewallet.admin.dto.response.ResponseAdminDto;
 import com.ewallet.admin.entity.Admin;
 import com.ewallet.admin.enums.Gender;
 import com.ewallet.admin.enums.Role;
+import com.ewallet.admin.enums.Status;
 import com.ewallet.admin.exceptions.NotFoundException;
 import com.ewallet.admin.repository.AdminRepository;
 import com.ewallet.admin.service.definition.AdminService;
@@ -94,6 +95,7 @@ public class AdminServiceImpl implements AdminService
         admin.setBirthDate(birthDate);
 //        admin.setNidNumber(nidCard);
 //        admin.setProfileImage(profileImage);
+        admin.setStatus(Status.ACTIVE);
         admin.setRole(Role.ROLE_ADMIN);
         admin.setGender(Gender.valueOf(requestAdminDto.getGender()));
         return admin;
