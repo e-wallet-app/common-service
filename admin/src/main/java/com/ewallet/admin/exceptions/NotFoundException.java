@@ -1,4 +1,4 @@
-package com.ewallet.admin.exception;
+package com.ewallet.admin.exceptions;
 
 public class NotFoundException extends RuntimeException
 {
