@@ -19,6 +19,7 @@ public class AgentResDto {
     private String email;
     private String gender;
     private String pin;
+    private String status;
     private String role;
     private String profileImagePath;
 }

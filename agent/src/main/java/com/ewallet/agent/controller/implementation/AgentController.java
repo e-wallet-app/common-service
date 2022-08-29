@@ -1,5 +1,6 @@
 package com.ewallet.agent.controller.implementation;
 
+import com.ewallet.agent.controller.definition.IAgentController;
 import com.ewallet.agent.dto.request.AgentReqDto;
 import com.ewallet.agent.dto.response.AgentResDto;
 import com.ewallet.agent.entity.Agent;
@@ -12,8 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
-public class AgentController {
+public class AgentController implements IAgentController {
 
     private AgentService agentService;
 
@@ -21,14 +21,14 @@ public class AgentController {
         this.agentService = agentService;
     }
 
-    @GetMapping("/agent")
+    @Override
     public ResponseEntity<List<AgentResDto>> allAgent()
     {
         var agent =  agentService.getAllAgent();
         return ResponseEntity.ok(agent);
     }
 
-    @GetMapping("/agent/{id}")
+    @Override
     public ResponseEntity<AgentResDto> getAgent(@PathVariable String id){
         var agent = agentService.findById(id);
         if(agent == null){
@@ -37,20 +37,20 @@ public class AgentController {
         return ResponseEntity.ok(agent);
     }
 
-    @PostMapping("/agent")
+    @Override
     public ResponseEntity<String> createAgent(@RequestBody  AgentReqDto agentReqDto){
         agentService.createAgent(agentReqDto);
         return new ResponseEntity<>("Agent Created", HttpStatus.CREATED);
     }
 
-    @PutMapping("/agent")
+    @Override
     public ResponseEntity<String> updateAgent(@RequestBody Agent agent){
         Agent agents =  agentService.updateAgent(agent);
         return  ResponseEntity.ok("agent updated");
     }
 
-    @DeleteMapping("/agent/{id}")
-    public ResponseEntity<String> deleteAgent(@PathVariable Long id){
+    @Override
+    public ResponseEntity<String> deleteAgent(@PathVariable String id){
         agentService.delete(id);
         return ResponseEntity.ok("agent deleted");
     }

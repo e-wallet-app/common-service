@@ -23,7 +23,7 @@ public class GlobalExceptionHandler{
     public ResponseEntity<AgentResponse> handleException(Exception ex){
         AgentResponse error = new  AgentResponse();
         error.setStatus(HttpStatus.BAD_REQUEST.value());
-        error.setMessage("type not match");
+        error.setMessage(ex.getMessage());
         error.setTimeStamp(System.currentTimeMillis());
 
         return new ResponseEntity<>(error,HttpStatus.BAD_REQUEST);
