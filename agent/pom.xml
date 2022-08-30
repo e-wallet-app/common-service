@@ -14,14 +14,6 @@
     <name>agent</name>
     <description>agent module</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.ewallet</groupId>
-            <artifactId>admin</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>
