@@ -2,7 +2,7 @@ package com.common_service.attachment.config;
 
 public class Properties
 {
-    public static final int MAX_UPLOAD_SIZE = (1 * 1024 * 1024) * 50; // 1MB * 50 = 50 MB
+    public static final int MAX_UPLOAD_SIZE = 10 * 1024 * 1024; // 1MB = 1024 * 1024 bytes
 
     public static final String WRITE_PATH = System.getProperty("user.home") + "/Documents/ewallet/";
 
